@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template_string
+from flask import Flask, request
 
 app = Flask(__name__)
 
@@ -42,12 +42,16 @@ def home():
 @app.route('/create-job', methods=['GET', 'POST'])
 def create_job():
     if request.method == 'POST':
-        title = request.form['title']
-        company = request.form['company']
-        location = request.form['location']
-        
-        # Job posted! Show success message
-        return f'''<!DOCTYPE html>
+        try:
+            title = request.form.get('title', '')
+            company = request.form.get('company', '')
+            location = request.form.get('location', '')
+            description = request.form.get('description', '')
+            requirements = request.form.get('requirements', '')
+            salary = request.form.get('salary', '')
+            
+            # Job posted! Show success message
+            return f'''<!DOCTYPE html>
 <html>
 <head>
     <title>Job Posted!</title>
@@ -59,7 +63,7 @@ def create_job():
             text-align: center; 
             padding: 50px; 
         }
-        h1 { font-size: 3em; }
+        h1 { font-size: 2.5em; }
         .success { background: rgba(255,255,255,0.2); padding: 30px; margin: 20px; border-radius: 15px; }
         .btn { 
             background: white; 
@@ -77,13 +81,18 @@ def create_job():
     <h1>✅ Job Posted Successfully!</h1>
     <div class="success">
         <h2>{title}</h2>
-        <p>Company: {company}</p>
-        <p>Location: {location}</p>
+        <p><strong>Company:</strong> {company}</p>
+        <p><strong>Location:</strong> {location}</p>
+        <p><strong>Description:</strong> {description}</p>
+        <p><strong>Requirements:</strong> {requirements}</p>
+        <p><strong>Salary:</strong> {salary}</p>
     </div>
     <a href="/" class="btn">Home</a>
     <a href="/create-job" class="btn">Post Another Job</a>
 </body>
 </html>'''
+        except Exception as e:
+            return f'''<h1>Error: {str(e)}</h1><a href="/create-job">Try Again</a>'''
     
     # Show form (GET request)
     return '''<!DOCTYPE html>
