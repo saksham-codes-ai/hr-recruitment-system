@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Applications</title>
+  <style>
+    body{font-family:Arial,sans-serif;background:#f4f7fb;margin:0;padding:0}
+    .wrap{max-width:1000px;margin:0 auto;padding:20px}
+    .card{background:#fff;border-radius:12px;padding:16px;margin:14px 0;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+    .muted{color:#666}
+    a{color:#2563eb;text-decoration:none}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Applications</h1>
+    <a href="/">← Back</a>
+    {% for app in applications %}
+      <div class="card">
+        <h2>{{ app.name }}</h2>
+        <p><strong>Job:</strong> {{ app.job_title }} — {{ app.job_company }}</p>
+        <p><strong>Email:</strong> {{ app.email }}</p>
+        <p><strong>Phone:</strong> {{ app.phone }}</p>
+        <p><strong>Applied:</strong> {{ app.applied_date }}</p>
+        {% if app.resume_text %}<p>{{ app.resume_text }}</p>{% endif %}
+      </div>
+    {% else %}
+      <div class="card"><p>No applications yet.</p></div>
+    {% endfor %}
+  </div>
+</body>
+</html>
