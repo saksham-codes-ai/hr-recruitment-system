@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Job</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        .container {
+            max-width: 520px;
+            margin: 60px auto;
+            background: rgba(255,255,255,0.12);
+            padding: 35px;
+            border-radius: 16px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        input {
+            width: 100%;
+            padding: 14px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 10px;
+            outline: none;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 14px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #667eea;
+            background: white;
+        }
+        .back {
+            text-align: center;
+            margin-top: 18px;
+        }
+        .back a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Create Job</h1>
+        <form method="POST">
+            <input type="text" name="title" placeholder="Job Title" required>
+            <input type="text" name="company" placeholder="Company" required>
+            <input type="text" name="location" placeholder="Location" required>
+            <button type="submit">Post Job</button>
+        </form>
+        <div class="back">
+            <a href="/">← Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>
