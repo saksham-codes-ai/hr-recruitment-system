@@ -5,42 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HR Recruitment System</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             min-height: 100vh;
         }
-        
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
-        
         header {
             text-align: center;
             padding: 60px 20px;
         }
-        
         h1 {
             font-size: 3.5em;
             margin-bottom: 20px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
-        
         .subtitle {
             font-size: 1.5em;
             margin-bottom: 40px;
             opacity: 0.9;
         }
-        
         .btn {
             background: white;
             color: #667eea;
@@ -54,12 +44,10 @@
             transition: transform 0.3s, box-shadow 0.3s;
             font-weight: bold;
         }
-        
         .btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
-        
         .info {
             background: rgba(255,255,255,0.1);
             padding: 30px;
@@ -68,15 +56,37 @@
             max-width: 800px;
             text-align: center;
         }
-        
         .info h2 {
             margin-bottom: 20px;
             font-size: 2em;
         }
-        
         .info p {
             margin-bottom: 15px;
             font-size: 1.1em;
+        }
+        .jobs-section {
+            margin: 40px auto;
+            max-width: 900px;
+        }
+        .job-card {
+            background: rgba(255,255,255,0.15);
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 12px;
+            text-align: left;
+        }
+        .job-card h3 {
+            font-size: 1.4em;
+            margin-bottom: 8px;
+        }
+        .job-card p {
+            margin: 4px 0;
+        }
+        .empty {
+            text-align: center;
+            opacity: 0.9;
+            font-size: 1.1em;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -85,16 +95,31 @@
         <header>
             <h1>HR Recruitment System</h1>
             <p class="subtitle">AI-Powered Job Posting & Interview Management</p>
-            
             <a href="/create-job" class="btn">Create Job Posting</a>
         </header>
-        
+
         <div class="info">
             <h2>What This System Does</h2>
-            <p>✨ Create job postings with AI-generated descriptions</p>
-            <p>📧 Send interview invitations via email</p>
-            <p>📊 Track candidates and applications</p>
-            <p>🗓️ Generate interview schedules</p>
+            <p>✨ Create job postings</p>
+            <p>📊 Track posted jobs</p>
+            <p>🗓️ Prepare for interview management</p>
+            <p>💼 Build the hiring workflow step by step</p>
+        </div>
+
+        <div class="jobs-section">
+            <h2 style="text-align:center; margin-bottom:20px;">Available Jobs</h2>
+
+            {% if jobs %}
+                {% for job in jobs %}
+                    <div class="job-card">
+                        <h3>{{ job.title }}</h3>
+                        <p><strong>{{ job.company }}</strong> - {{ job.location }}</p>
+                        <p>Posted: {{ job.posted_date }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="empty">No jobs posted yet. Create the first one.</p>
+            {% endif %}
         </div>
     </div>
 </body>
