@@ -1,6 +1,7 @@
 from flask import Flask, request, redirect
 import sqlite3
 from datetime import datetime
+import os
 
 app = Flask(__name__)
 
@@ -125,4 +126,5 @@ button{width:100%;padding:15px;background:white;color:#667eea;border:none;border
 </html>'''
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
